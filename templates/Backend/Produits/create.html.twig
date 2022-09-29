@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Création Produits |
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<h1>Création Produits</h1>
+	{{ form_start(form) }}
+	{{ form_row(form.titre) }}
+	{{ form_row(form.description) }}
+	{{ form_row(form.prix) }}
+	{{ form_row(form.active) }}
+	<button type="submit" class="btn btn-primary">Créer</button>
+	{{ form_end(form) }}
+{% endblock %}

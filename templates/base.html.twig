@@ -19,8 +19,10 @@
 		{% endblock %}
 	</head>
 	<body>
+		{% include "Header/navbar.html.twig" %}
 		<main>
+			{% include "Security/_flash.html.twig" %}
 			{% block body %}{% endblock %}
-		</main</body>
+		</main>
 	</body>
 </html>

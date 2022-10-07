@@ -7,16 +7,25 @@
 
 {% block body %}
 
-
+	<pre>
+	{{ dump(produits) }}
+</pre>
 	<div class="example-wrapper">
 		<h1>Hello Produits! ✅</h1>
 		{% for produit in produits %}
 			{% include "Backend/Produits/_delete.html.twig" %}
 			<div class="form-check form-switch">
-				<input class="form-check-input" type="checkbox" role="switch" value="{{ produit.id }}" {{ produit.active ? 'checked' }} data-switch-active-produit>
+				<h2>{{ produit.titre }}
+				</h2>
+				<input class="form-check-input" type="checkbox" role="switch" value="{{ produit.id }}" {{ produit.active ? 'checked' }} data-switch-active-produits>
 				<label class="form-check-label">Actif</label>
 			</div>
 		{% endfor %}
 
 	</div>
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('admin') }}
+	{{ encore_entry_script_tags('app') }}
 {% endblock %}

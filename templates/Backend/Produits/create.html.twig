@@ -8,6 +8,7 @@
 {% block body %}
 	<h1>Création Produits</h1>
 	{{ form_start(form) }}
+	{{ form_row(form.imageFile)}}
 	{{ form_row(form.titre) }}
 	{{ form_row(form.description) }}
 	{{ form_row(form.prix) }}

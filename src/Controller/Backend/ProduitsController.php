@@ -90,4 +90,21 @@ class ProduitsController extends AbstractController
 
         return $this->redirectToRoute('produits.home', [], Response::HTTP_SEE_OTHER);
     }
+
+    // Switch Visibility Produits 
+    #[Route('/switch/{id}', name: 'produits.switchvisibility', methods: 'GET')]
+    public function switchVisibilityProduits(?Produits $produits)
+    {
+        if (!$produits instanceof Produits) {
+
+            return new Response('Produits non trouvé', 404);
+        }
+
+        if ($produits) {
+            $produits->isActive() ? $produits->setActive(false) : $produits->setActive(true);
+            $this->repoProduits->save($produits, true);
+
+            return new Response('Visibility changée !', 200);
+        }
+    }
 }

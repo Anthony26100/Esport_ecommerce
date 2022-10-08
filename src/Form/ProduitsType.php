@@ -3,12 +3,15 @@
 namespace App\Form;
 
 use App\Entity\Produits;
+use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProduitsType extends AbstractType
@@ -40,6 +43,20 @@ class ProduitsType extends AbstractType
                 'attr' => [
                     'placeholder' => 'Entrez le prix du produit',
                 ]
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'download_uri' => false,
+                'image_uri' => true,
+                'asset_helper' => true,
+                'label' => 'Image',
+            ])
+            ->add('categories', EntityType::class, [
+                'class' => Categories::class,
+                'label' => 'Categories :',
+                'multiple' => true,
+                'choice_label' => 'titre',
+                'by_reference' => false,
             ]);
     }
 

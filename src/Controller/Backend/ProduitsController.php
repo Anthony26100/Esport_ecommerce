@@ -19,7 +19,7 @@ class ProduitsController extends AbstractController
     ) {
     }
 
-    #[Route('', name: 'produits.home')]
+    #[Route('', name: 'produits.home', methods: ['GET'])]
     public function index(): Response
     {
         $produits = $this->repoProduits->findAll();
@@ -29,7 +29,7 @@ class ProduitsController extends AbstractController
         ]);
     }
 
-    #[Route('/create', name: 'produits.create')]
+    #[Route('/create', name: 'produits.create', methods: ['GET', 'POST'])]
     public function createProduits(Request $request): Response|RedirectResponse
     {
         $produit = new Produits();
@@ -41,6 +41,7 @@ class ProduitsController extends AbstractController
 
             $this->repoProduits->save($produit, true);
             $this->addFlash('success', 'Produits crée avec succès !');
+
             return $this->redirectToRoute('produits.home');
         }
 
@@ -90,5 +91,22 @@ class ProduitsController extends AbstractController
         $this->addFlash('error', 'Token invalide !');
 
         return $this->redirectToRoute('produits.home', [], Response::HTTP_SEE_OTHER);
+    }
+
+    // Switch Visibility Produits 
+    #[Route('/switch/{id}', name: 'produits.switchvisibility', methods: 'GET')]
+    public function switchVisibilityProduits(?Produits $produits)
+    {
+        if (!$produits instanceof Produits) {
+
+            return new Response('Produits non trouvé', 404);
+        }
+
+        if ($produits) {
+            $produits->isActive() ? $produits->setActive(false) : $produits->setActive(true);
+            $this->repoProduits->save($produits, true);
+
+            return new Response('Visibility changée !', 200);
+        }
     }
 }

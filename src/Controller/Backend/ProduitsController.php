@@ -46,6 +46,7 @@ class ProduitsController extends AbstractController
 
         return $this->renderForm('Backend/Produits/create.html.twig', [
             'form' => $form,
+            'produit' => $produit,
         ]);
     }
 

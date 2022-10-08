@@ -7,11 +7,6 @@
 
 {% block body %}
 	<h1>Modification Produits</h1>
-	{{ form_start(form) }}
-	{{ form_row(form.titre) }}
-	{{ form_row(form.description) }}
-	{{ form_row(form.prix) }}
-	{{ form_row(form.active) }}
-	<button type="submit" class="btn btn-primary">Modifier</button>
-	{{ form_end(form) }}
+	{% include "Backend/Produits/_form.html.twig" with {button_label: "Modifier"} %}
+
 {% endblock %}

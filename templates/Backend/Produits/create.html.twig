@@ -7,11 +7,15 @@
 
 {% block body %}
 	<h1>Création Produits</h1>
+	<section class="container mt-5">
 	{{ form_start(form) }}
 	{{ form_row(form.titre) }}
 	{{ form_row(form.description) }}
+
 	{{ form_row(form.prix) }}
 	{{ form_row(form.active) }}
 	<button type="submit" class="btn btn-primary">Créer</button>
 	{{ form_end(form) }}
+
+	</section>
 {% endblock %}

@@ -6,7 +6,9 @@
 {% endblock %}
 
 {% block body %}
-
+<pre>
+	{{ dump(produits) }}
+</pre>
 
 	<div class="example-wrapper">
 		<h1>Hello Produits! ✅</h1>
@@ -16,6 +18,7 @@
 				<input class="form-check-input" type="checkbox" role="switch" value="{{ produit.id }}" {{ produit.active ? 'checked' }} data-switch-active-produit>
 				<label class="form-check-label">Actif</label>
 			</div>
+			{% include "Backend/Produits/_form.html.twig" %}
 		{% endfor %}
 
 	</div>

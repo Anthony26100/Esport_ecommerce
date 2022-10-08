@@ -15,8 +15,13 @@
 		{% for produit in produits %}
 			{% include "Backend/Produits/_delete.html.twig" %}
 			<div class="form-check form-switch">
-				<h2>{{ produit.titre }}
+				<h2>{{ produit.categories }}
 				</h2>
+				{% for categorie in produit.categories %}
+					{# <p>{{ categorie.titre }}</p> #}
+				{% endfor %}
+
+
 				<input class="form-check-input" type="checkbox" role="switch" value="{{ produit.id }}" {{ produit.active ? 'checked' }} data-switch-active-produits>
 				<label class="form-check-label">Actif</label>
 			</div>

@@ -3,9 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Produits;
+use App\Entity\Categories;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -48,6 +50,13 @@ class ProduitsType extends AbstractType
                 'image_uri' => true,
                 'asset_helper' => true,
                 'label' => 'Image',
+            ])
+            ->add('categories', EntityType::class, [
+                'class' => Categories::class,
+                'label' => 'Categories :',
+                'multiple' => true,
+                'choice_label' => 'titre',
+                'by_reference' => false,
             ]);
     }
 

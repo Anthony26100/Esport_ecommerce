@@ -19,7 +19,7 @@ class ProduitsController extends AbstractController
     ) {
     }
 
-    #[Route('', name: 'produits.home')]
+    #[Route('', name: 'produits.home', methods: ['GET'])]
     public function index(): Response
     {
         $produits = $this->repoProduits->findAll();
@@ -29,7 +29,7 @@ class ProduitsController extends AbstractController
         ]);
     }
 
-    #[Route('/create', name: 'produits.create')]
+    #[Route('/create', name: 'produits.create', methods: ['GET', 'POST'])]
     public function createProduits(Request $request): Response|RedirectResponse
     {
         $produit = new Produits();
@@ -41,6 +41,7 @@ class ProduitsController extends AbstractController
 
             $this->repoProduits->save($produit, true);
             $this->addFlash('success', 'Produits crée avec succès !');
+
             return $this->redirectToRoute('produits.home');
         }
 

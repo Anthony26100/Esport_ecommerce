@@ -1,0 +1,19 @@
+<div class="border-0 shadow rounded card mt-3 mb-4">
+	{% if produit.imageName %}
+		<img src="{{ vich_uploader_asset(produit,'imageFile') }}" class="img-fluid rounded-top card-product__img" alt="Image du produit">
+
+	{% endif %}
+	<div class="card-body">
+		<h4 class="card-title">
+			{{ produit.titre }}
+			({{ produit.prix / 100 }}&euro;)
+		</h4>
+
+		<span class="badge bg-info shadow rounded">{{ produit.titre }}</span>
+
+		<p class="card-text">{{ produit.description }}</p>
+
+		<a href="{{ path('product_show', {'slug': produit.slug}) }}" class="btn btn-primary btn-sm shadow rounded">Détails</a>
+		<a href="{{ path('cart_add', {'id': produit.id}) }}" class="btn btn-success btn-sm shadow rounded">Ajouter</a>
+	</div>
+</div>

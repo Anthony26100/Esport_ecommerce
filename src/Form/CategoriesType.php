@@ -15,8 +15,7 @@ class CategoriesType extends AbstractType
     {
         $builder
             ->add('titre', TextType::class)
-            ->add('active', CheckboxType::class)
-            ->add('produits');
+            ->add('active', CheckboxType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

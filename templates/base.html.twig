@@ -17,9 +17,6 @@
 			{{ encore_entry_link_tags('app') }}
 		{% endblock %}
 
-		{% block javascripts %}
-			{{ encore_entry_script_tags('app') }}
-		{% endblock %}
 	</head>
 	<body>
 		{% include "Header/navbar.html.twig" %}
@@ -27,5 +24,8 @@
 			{% include "Security/_flash.html.twig" %}
 			{% block body %}{% endblock %}
 		</main>
+		{% block javascripts %}
+			{{ encore_entry_script_tags('app') }}
+		{% endblock %}
 	</body>
 </html>

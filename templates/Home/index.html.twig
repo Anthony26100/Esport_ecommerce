@@ -6,14 +6,15 @@
 {% endblock %}
 
 {% block body %}
-	<div class="example-wrapper">
-		<h1>Hello Page D'Accueil! ✅</h1>
-		<div class="row">
+	<section class="container">
+		<h1 class="text-center mt-5">Montres de Luxes
+		</h1>
+		<div class="row mt-5">
 			{% for produit in produits %}
 				<div class="col">
 					{% include "Components/_produitsCards.html.twig" %}
 				</div>
 			{% endfor %}
 		</div>
-	</div>
+	</section>
 {% endblock %}

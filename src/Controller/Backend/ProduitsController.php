@@ -45,7 +45,7 @@ class ProduitsController extends AbstractController
             return $this->redirectToRoute('produits.home');
         }
 
-        return $this->renderForm('Backend/product/create.html.twig', [
+        return $this->renderForm('Backend/Produits/create.html.twig', [
             'form' => $form,
             'produit' => $produit,
         ]);

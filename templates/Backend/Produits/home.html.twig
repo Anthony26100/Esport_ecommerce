@@ -13,17 +13,16 @@
 	<div class="example-wrapper">
 		<h1>Hello Produits! ✅</h1>
 		{% for produit in produits %}
-			{% include "Backend/Produits/_delete.html.twig" %}
 			<div class="form-check form-switch">
-				<h2>{{ produit.categories }}
-				</h2>
+				<h2>{{ produit }}</h2>
+				<p>{{ produit.prix }}
+					€</p>
 				{% for categorie in produit.categories %}
-					{# <p>{{ categorie.titre }}</p> #}
+					<p>{{ categorie }}</p>
 				{% endfor %}
-
-
 				<input class="form-check-input" type="checkbox" role="switch" value="{{ produit.id }}" {{ produit.active ? 'checked' }} data-switch-active-produits>
 				<label class="form-check-label">Actif</label>
+				{% include "Backend/Produits/_delete.html.twig" %}
 			</div>
 		{% endfor %}
 
@@ -31,6 +30,6 @@
 {% endblock %}
 
 {% block javascripts %}
+	{{ parent() }}
 	{{ encore_entry_script_tags('admin') }}
-	{{ encore_entry_script_tags('app') }}
 {% endblock %}

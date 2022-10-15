@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\CategoriesRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Produits;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CategoriesRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: CategoriesRepository::class)]
 class Categories
@@ -24,9 +26,18 @@ class Categories
     #[ORM\Column]
     private ?bool $active = null;
 
+    #[ORM\Column(length: 255, unique: true)]
+    #[Gedmo\Slug(fields: ['titre'])]
+    private ?string $slug = null;
+
     public function __construct()
     {
         $this->produits = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->titre;
     }
 
     public function getId(): ?int
@@ -78,6 +89,18 @@ class Categories
     public function setActive(bool $active): self
     {
         $this->active = $active;
+
+        return $this;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
 
         return $this;
     }

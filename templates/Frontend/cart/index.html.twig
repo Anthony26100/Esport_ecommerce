@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Votre panier
+{% endblock %}
+
+{% block body %}
+	<h1>Votre panier</h1>
+
+	{% if items | length > 0 %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Total</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for item in items %}
+					<tr>
+						<td>{{ item.product.titre }}</td>
+						<td>{{ item.product.prix / 100 }}€</td>
+						<td>
+							<a href="{{ path('cart_add', {'id': item.product.id}) }}?returnToCart=true" class="btn btn-sm btn-primary shadow rounded-circle">
+								<i class="fas fa-plus"></i>
+							</a>
+							{{ item.quantity }}
+							<a href="{{ path('cart_decrement', {'id': item.product.id}) }}" class="btn btn-sm btn-primary shadow rounded-circle">
+								<i class="fas fa-minus"></i>
+							</a>
+						</td>
+						<td>{{ item.total / 100 }}€</td>
+						<td>
+							<a href="{{ path('cart_delete', {'id': item.product.id}) }}" class="btn btn-sm btn-danger shadow rounded">
+								<i class="fas fa-trash"></i>
+								Supprimer
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Total :</td>
+					<td colspan="2">{{ total / 100 }}€</td>
+				</tr>
+			</tfoot>
+		</table>
+
+		<hr>
+
+		{% if app.user %}
+			<h2>Confirmez votre commande remplissant ce formulaire</h2>
+
+			{{ form_start(confirmationForm, {'action': path('purchase_confirm')}) }}
+
+			{{ form_widget(confirmationForm) }}
+
+			<button type="submit" class="btn btn-success shadow rounded mb-5">
+				Je confirme
+			</button>
+
+			{{ form_end(confirmationForm) }}
+
+		{% else %}
+			<h2>Vous devez être connecté pour onfirmer cette commande</h2>
+			<a href="{{ path('security_login') }}" class="btn btn-success shadow rounded">Connexion</a>
+			OU
+			<a href="{{ path('inscription')}}" class="btn btn-info text-light rounded shadow">Créer un compte</a>
+		{% endif %}
+
+	{% else %}
+		<h2>Le panier est vide !</h2>
+	{% endif %}
+
+{% endblock %}

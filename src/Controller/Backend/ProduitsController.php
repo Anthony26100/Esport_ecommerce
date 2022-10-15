@@ -19,7 +19,7 @@ class ProduitsController extends AbstractController
     ) {
     }
 
-    #[Route('', name: 'produits.home', methods: ['GET'])]
+    #[Route('', name: 'produits.home', methods: ['GET', 'POST'])]
     public function index(): Response
     {
         $produits = $this->repoProduits->findAll();
@@ -45,7 +45,7 @@ class ProduitsController extends AbstractController
             return $this->redirectToRoute('produits.home');
         }
 
-        return $this->renderForm('Backend/Produits/create.html.twig', [
+        return $this->renderForm('Backend/product/create.html.twig', [
             'form' => $form,
         ]);
     }

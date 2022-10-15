@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+	Catégorie :
+	{{ category.titre }}
+{% endblock %}
+
+{% block body %}
+
+	<h1>Catégorie :
+		{{ category.titre }}
+	</h1>
+
+	<div class="row">
+		{% for p in category.produits %}
+			<div class="col-3">
+				{% include "Components/_produitsCards.html.twig" %}
+			</div>
+		{% endfor %}
+	</div>
+
+{% endblock %}

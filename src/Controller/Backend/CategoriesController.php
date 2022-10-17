@@ -68,7 +68,7 @@ class CategoriesController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $categoriesRepository->save($category, true);
 
-            return $this->redirectToRoute('app_categories_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('categories.home', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('Categories/edit.html.twig', [
